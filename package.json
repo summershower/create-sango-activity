@@ -1,0 +1,19 @@
+{
+  "name": "create-sango-activity",
+  "version": "1.0.4",
+  "description": "创建Sango活动项目的简易脚手架",
+  "keywords": [
+    "MQJC",
+    "Sango"
+  ],
+  "bin": {
+    "create-sango-activity": "/index.js"
+  },
+  "author": "summershower",
+  "license": "ISC",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "inquirer": "^8.0.0"
+  }
+}
