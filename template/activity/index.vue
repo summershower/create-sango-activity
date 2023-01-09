@@ -36,12 +36,10 @@
     const lang = ['en', 'ar', 'tr', 'ur'].includes(sessionStorage.getItem('language'))
         ? sessionStorage.getItem('language')
         : 'en';
-    const banner = Object.values(
-        import.meta.glob('../../assets/images/<%= projectName %>/banner*.jpg', {
-            as: 'url',
-            eager: true,
-        })
-    ).find((v) => v.includes(`banner-${lang}`));<%if (isNeedHalfMode.toLowerCase() === 'y') { %>
+    const banner = new URL(
+        `../../assets/images/<%= projectName %>/banner-${sessionStorage.getItem('language')}.jpg`,
+        import.meta.url
+    ).href;<%if (isNeedHalfMode.toLowerCase() === 'y') { %>
       // 判断是半屏模式还是全屏模式
     const route = useRoute();
     const { mode = false } = route.query;

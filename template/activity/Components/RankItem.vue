@@ -41,7 +41,7 @@ const props = defineProps({
 function handleClickPortrait() {
     if (props.userId) {
         openPersonageInfo(props.userId);
-        reportEvent('<% chineseName %>', '点击用户头像', `打开${props.userId}的个人主页`);
+        reportEvent('<%= chineseName %>', '点击用户头像', `打开${props.userId}的个人主页`);
     }
 }
 </script>
