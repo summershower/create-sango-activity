@@ -23,7 +23,7 @@
     </div>
 </template>
 <script setup lang="ts">
-    import { ref, inject, onMounted } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { useI18n } from 'vue-i18n';<%if (isNeedPinia.toLowerCase() === 'y') { %>
     import { useStore } from './store';
     const store = useStore();<% } %>
@@ -31,15 +31,7 @@
     import { useRoute } from 'vue-router';
     import { closeWebview, reportEvent } from '@utils/NativeUtils';<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>import { reportEvent } from '@utils/NativeUtils';<% } %> 
     const { t } = useI18n();
-    const langDirection: string = inject('$langDirection');
-    const isRtl: boolean = inject('$isRtl');
-    const lang = ['en', 'ar', 'tr', 'ur'].includes(sessionStorage.getItem('language'))
-        ? sessionStorage.getItem('language')
-        : 'en';
-    const banner = new URL(
-        `../../assets/images/<%= projectName %>/banner-${sessionStorage.getItem('language')}.jpg`,
-        import.meta.url
-    ).href;<%if (isNeedHalfMode.toLowerCase() === 'y') { %>
+    <%if (isNeedHalfMode.toLowerCase() === 'y') { %>
       // 判断是半屏模式还是全屏模式
     const route = useRoute();
     const { mode = false } = route.query;
@@ -55,10 +47,6 @@
     }
   
     onMounted(() => {
-        // 追加反向布局
-        if (isRtl) {
-            document.body.style.direction = 'rtl';
-        }
         // 非全屏模式，页面透明+追加滑动手势
         document.body.style.background = 'transparent';
         if (!isFullMode.value) {
@@ -81,12 +69,6 @@
                     closeWebview();
                 }, 300)
             );
-        }
-    });<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>
-    onMounted(() => {
-        // 追加反向布局
-        if (isRtl) {
-            document.body.style.direction = 'rtl';
         }
     });<% } %>
     reportEvent('<%= chineseName %>', '首页', '进入首页');
