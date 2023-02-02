@@ -12,10 +12,22 @@ inquirer.prompt([{
     validate: function (input) {
         return /^[a-z]+([A-Z][a-z]+)*$/.test(input) || "活动名称只能为驼峰英文命名"
     }
-}, {
+}, 
+{
+    type: 'input',
+    name: 'id',
+    message: '输入活动ID：',
+    validate: function (input) {
+        return /^\d+$/.test(input) || "活动ID只能为数字"
+    }
+},
+{
     type: 'input',
     name: 'chineseName',
-    message: '输入活动中文名：'
+    message: '输入活动中文名：',
+    validate: function (input) {
+        return /.+/.test(input) || "请输入活动中文名"
+    }
 }, {
     type: 'input',
     name: 'isNeedRoomPlug',
@@ -49,7 +61,8 @@ inquirer.prompt([{
 ]).then(answer => {
     const templateDir = path.join(__dirname, 'template');
     const templateActivityFileDir = path.join(__dirname, 'template', 'activity');
-    const targetPageDir = path.join(process.cwd(), 'src', 'pages', answer.projectName);
+    // const targetPageDir = path.join(process.cwd(), 'src', 'pages', answer.projectName); // 目标文件夹，暂时弃用
+    const targetPageDir = path.join(process.cwd(), 'src', 'pages', answer.id); // 暂时改成ID文件夹
     const targetRouterDir = path.join(process.cwd(), 'src', 'routes', 'maps');
     const targetLangDir = path.join(process.cwd(), 'src', 'lang', 'modules');
     const targetLangTitleDir = path.join(process.cwd(), 'src', 'lang', 'modules', 'pageTitle.js');
@@ -107,6 +120,7 @@ inquirer.prompt([{
     if (answer.isNeedRoomPlug.toLocaleLowerCase() !== 'y') ignoreFiles.push('roomPlug.vue');
     if (answer.isNeedRank.toLocaleLowerCase() !== 'y') ignoreFiles.push('Components');
     if (answer.isNeedHalfMode.toLocaleLowerCase() !== 'y') ignoreFiles.push('hooks.ts');
+    // 复制项目主体文件
     copyDir(templateActivityFileDir, targetPageDir, ignoreFiles);
     console.log('创建成功');
 })

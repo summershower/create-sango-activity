@@ -46,7 +46,7 @@
     import { getRankData } from '../requests';
     import MyRank from './MyRank.vue';
 
-    const props = defineProps<>();
+    const props = defineProps();
 
     const page = ref(1);
     const loading = ref(false);

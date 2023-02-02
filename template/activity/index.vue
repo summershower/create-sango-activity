@@ -19,18 +19,48 @@
                 v-if="!isFullMode"
                 id="slidingBar"></div>
         </div><% } %>
-        <%if (isNeedHalfMode.toLowerCase() !== 'y') { %><%= projectName %><% } %>
+        <%if (isNeedHalfMode.toLowerCase() !== 'y') { %><div class="banner" v-lang-bg="'newYearBag/banner_*.png'">BANNER</div>
+        <div class="tabs">
+            <div
+                class="tab-item"
+                :class="activeTab === item.index && 'active'"
+                v-for="item in tabs"
+                :key="item.index"
+                @click="handleClickTab(item)">
+                {{ item.name }}
+            </div>
+        </div><% } %>
     </div>
 </template>
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue';
-    import { useI18n } from 'vue-i18n';<%if (isNeedPinia.toLowerCase() === 'y') { %>
+    import { ref } from 'vue';
+    import { useI18n } from 'vue-i18n';
+    import { useRtl } from '@/utils/hooks';<%if (isNeedPinia.toLowerCase() === 'y') { %>
     import { useStore } from './store';
     const store = useStore();<% } %>
     <%if (isNeedHalfMode.toLowerCase() === 'y') { %>import { useTopLineGestureSliding,usePageGestureSliding } from './hooks';
     import { useRoute } from 'vue-router';
-    import { closeWebview, reportEvent } from '@utils/NativeUtils';<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>import { reportEvent } from '@utils/NativeUtils';<% } %> 
+    import { closeWebview, reportEvent } from '@/utils/NativeUtils';<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>import { reportEvent } from '@/utils/NativeUtils';<% } %> 
     const { t } = useI18n();
+    const tabs = [
+        {
+            name: '首页',
+            index: 'HOME',
+        },
+        {
+            name: '排行榜',
+            index: 'RANK',
+        },
+        {
+            name: '规则',
+            index: 'RULES',
+        },
+    ];
+    const activeTab = ref('HOME');
+    function handleClickTab(item) {
+        activeTab.value = item.index;
+        reportEvent('<%= chineseName %>', '切换TAB', `切换到${item.name}页面`);
+    }
     <%if (isNeedHalfMode.toLowerCase() === 'y') { %>
       // 判断是半屏模式还是全屏模式
     const route = useRoute();
@@ -70,7 +100,7 @@
                 }, 300)
             );
         }
-    });<% } %>
+    });<% } %>useRtl();
     reportEvent('<%= chineseName %>', '首页', '进入首页');
 </script>
 <style lang="scss" scoped><%if (isNeedHalfMode.toLowerCase() === 'y') { %>
@@ -109,4 +139,22 @@
                 border-radius: pxToRem(30, 75);
             }
         }
-    }<% } %></style>
+    }<% } %>
+    .banner {
+        width: 100%;
+        height: 566px;
+    }
+    .tabs {
+        display: flex;
+        height: 70px;
+        background: rgb(68, 107, 165);
+
+        .tab-item {
+            @extend .flex-center;
+            flex: 1;
+
+            &.active {
+                color: white;
+            }
+        }
+    }</style>
