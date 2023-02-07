@@ -25,5 +25,18 @@ export default [
             noBasePath: true,
             t: '<%= projectName %>',
         },
-    },<% } %>
+    },<% } %><%if (isNeedLandingPage.toLowerCase() === 'y') { %>
+        // <%= chineseName %>分享落地页
+        {
+            path: '/<%= lineName %>/landingPage',
+            name: '<%= projectName %>LandingPage',
+            component: () => import('@pages/<%= id %>/landingPage.vue'),
+            meta: <MetaType>{
+                ...authMeta,
+                pageTitle: '<%= projectName %>',
+                noBasePath: true,
+                t: '<%= projectName %>',
+                requireAuth: false,
+            },
+        },<% } %>
 ];

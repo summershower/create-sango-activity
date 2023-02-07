@@ -19,7 +19,7 @@
                 v-if="!isFullMode"
                 id="slidingBar"></div>
         </div><% } %>
-        <%if (isNeedHalfMode.toLowerCase() !== 'y') { %><div class="banner" v-lang-bg="'newYearBag/banner_*.png'">BANNER</div>
+        <%if (isNeedHalfMode.toLowerCase() !== 'y') { %><div class="banner" v-bg="'newYearBag/banner_*.png'">BANNER</div>
         <div class="tabs">
             <div
                 class="tab-item"

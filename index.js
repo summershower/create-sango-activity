@@ -37,6 +37,13 @@ inquirer.prompt([{
     }
 }, {
     type: 'input',
+    name: 'isNeedLandingPage',
+    message: '是否需要分享落地页 (Y/N)',
+    validate: function (input) {
+        return /^[yYnN]{1}$/.test(input) || "请输入y或n"
+    }
+}, {
+    type: 'input',
     name: 'isNeedPinia',
     message: '是否需要Pinia (Y/N)',
     validate: function (input) {
