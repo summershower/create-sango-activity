@@ -127,6 +127,7 @@ inquirer.prompt([{
     if (answer.isNeedRoomPlug.toLocaleLowerCase() !== 'y') ignoreFiles.push('roomPlug.vue');
     if (answer.isNeedRank.toLocaleLowerCase() !== 'y') ignoreFiles.push('Components');
     if (answer.isNeedHalfMode.toLocaleLowerCase() !== 'y') ignoreFiles.push('hooks.ts');
+    if (answer.isNeedLandingPage.toLocaleLowerCase() !== 'y') ignoreFiles.push('landingPage.vue');
     // 复制项目主体文件
     copyDir(templateActivityFileDir, targetPageDir, ignoreFiles);
     console.log('创建成功');
