@@ -49,18 +49,18 @@ function handleClickPortrait() {
 .rank-item {
     position: relative;
     display: grid;
-    grid-template-columns: pxToRem(131, 75) pxToRem(88, 75) 1fr pxToRem(200, 75);
+    grid-template-columns: 131px 88px 1fr 200px;
     align-items: center;
-    margin: pxToRem(13.5, 75) auto 0;
-    width: pxToRem(693, 75);
-    height: pxToRem(108, 75);
+    margin: 13.5px auto 0;
+    width: 693px;
+    height: 108px;
     color: #fbbd81;
     background: url('@/assets/images/octoberGifts/rank.png') center center / 100% 100% no-repeat;
 
     .rank {
         justify-self: center;
         font-weight: 700;
-        font-size: pxToRem(24, 75);
+        font-size: 24px;
         text-align: center;
         color: #fbbd81;
     }
@@ -69,10 +69,10 @@ function handleClickPortrait() {
         @extend .text-ellipsis;
         justify-self: start;
         direction: ltr;
-        padding: 0 pxToRem(30, 75);
-        max-width: pxToRem(340, 75);
+        padding: 0 30px;
+        max-width: 340px;
         font-weight: 600;
-        font-size: pxToRem(25, 75);
+        font-size: 25px;
         text-align: center;
     }
 
@@ -81,11 +81,11 @@ function handleClickPortrait() {
             display: block;
             padding: 0;
             margin: 0;
-            width: pxToRem(86, 75);
-            height: pxToRem(86, 75);
+            width: 86px;
+            height: 86px;
             object-fit: contain;
             border-radius: 50%;
-            border: pxToRem(2, 75) solid #fff;
+            border: 2px solid #fff;
         }
     }
 
@@ -94,7 +94,7 @@ function handleClickPortrait() {
         justify-self: center;
         position: relative;
         font-weight: 600;
-        font-size: pxToRem(25, 75);
+        font-size: 25px;
     }
 }
 </style>

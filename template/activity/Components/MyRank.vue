@@ -53,15 +53,15 @@ function handleClickPortrait() {
     z-index: 5;
     bottom: 0;
     display: grid;
-    grid-template-columns: pxToRem(134, 75) pxToRem(94, 75) 1fr pxToRem(220, 75);
+    grid-template-columns: 134px 94px 1fr 220px;
     align-items: center;
     width: 100%;
-    height: pxToRem(150, 75);
+    height: 150px;
 
     .rank {
         justify-self: center;
         font-weight: 700;
-        font-size: pxToRem(26, 75);
+        font-size: 26px;
         text-align: center;
         color: #7b4000;
     }
@@ -70,10 +70,10 @@ function handleClickPortrait() {
         @extend .text-ellipsis;
         justify-self: start;
         direction: ltr;
-        padding: 0 pxToRem(30, 75);
-        max-width: pxToRem(340, 75);
+        padding: 0 30px;
+        max-width: 340px;
         font-weight: 400;
-        font-size: pxToRem(25, 75);
+        font-size: 25px;
         text-align: center;
         color: #7b4000;
     }
@@ -83,11 +83,11 @@ function handleClickPortrait() {
             display: block;
             padding: 0;
             margin: 0;
-            width: pxToRem(90, 75);
-            height: pxToRem(90, 75);
+            width: 90px;
+            height: 90px;
             object-fit: contain;
             border-radius: 50%;
-            border: pxToRem(2, 75) solid #f2eac3;
+            border: 2px solid #f2eac3;
         }
     }
 
@@ -95,7 +95,7 @@ function handleClickPortrait() {
         @extend .flex-center;
         justify-self: center;
         position: relative;
-        font-size: pxToRem(32, 75);
+        font-size: 32px;
     }
 }
 </style>

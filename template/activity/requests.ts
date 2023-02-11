@@ -5,3 +5,4 @@ const API = {
 };
 
 export const getIndexData = simpleRequest(API.GET_INDEX_DATA, 'get', null);
+export const getParamsData = (param) => simpleRequest(API.GET_INDEX_DATA, 'get', { param })();
