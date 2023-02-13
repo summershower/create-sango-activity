@@ -18,6 +18,17 @@
                 class="line"
                 v-if="!isFullMode"
                 id="slidingBar"></div>
+                <div class="banner" v-bg="'newYearBag/banner_*.png'">BANNER</div>
+                <div class="tabs">
+                    <div
+                        class="tab-item"
+                        :class="activeTab === item.index && 'active'"
+                        v-for="item in tabs"
+                        :key="item.index"
+                        @click="handleClickTab(item)">
+                        {{ item.name }}
+                    </div>
+                </div>
         </div><% } %>
         <%if (isNeedHalfMode.toLowerCase() !== 'y') { %><div class="banner" v-bg="'newYearBag/banner_*.png'">BANNER</div>
         <div class="tabs">
@@ -33,7 +44,7 @@
     </div>
 </template>
 <script setup lang="ts">
-    import { ref } from 'vue';
+    <%if (isNeedHalfMode.toLowerCase() === 'y') { %>import { ref, onMounted } from 'vue';<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>import { ref } from 'vue';<% } %> 
     import { useI18n } from 'vue-i18n';
     import { useRtl } from '@/utils/hooks';<%if (isNeedPinia.toLowerCase() === 'y') { %>
     import { useStore } from './store';
@@ -65,8 +76,8 @@
       // 判断是半屏模式还是全屏模式
     const route = useRoute();
     const { mode = false } = route.query;
-    const isFullMode = ref(false);
-    if (mode === 'full') isFullMode.value = true;
+    const isFullMode = ref(true);
+    if (mode === 'half') isFullMode.value = false;
 
     const containerRef = ref(null);
     function handleClose() {
@@ -100,7 +111,8 @@
                 }, 300)
             );
         }
-    });<% } %>useRtl();
+    });<% } %>
+    useRtl();
     reportEvent('<%= chineseName %>', '首页', '进入首页');
 </script>
 <style lang="scss" scoped><%if (isNeedHalfMode.toLowerCase() === 'y') { %>
