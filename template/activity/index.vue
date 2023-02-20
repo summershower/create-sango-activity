@@ -51,7 +51,8 @@
     const store = useStore();<% } %>
     <%if (isNeedHalfMode.toLowerCase() === 'y') { %>import { useTopLineGestureSliding,usePageGestureSliding } from './hooks';
     import { useRoute } from 'vue-router';
-    import { closeWebview, reportEvent } from '@/utils/NativeUtils';<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>import { reportEvent } from '@/utils/NativeUtils';<% } %> 
+    import { closeWebview, reportEvent } from '@/utils/NativeUtils';<% } %><%if (isNeedHalfMode.toLowerCase() !== 'y') { %>import { reportEvent } from '@/utils/NativeUtils';<% } %>
+    <%if (isNeedMock.toLowerCase() === 'y') { %>import mock from './mock';<% } %> 
     const { t } = useI18n();
     const tabs = [
         {

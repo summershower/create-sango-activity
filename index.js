@@ -12,7 +12,7 @@ inquirer.prompt([{
     validate: function (input) {
         return /^[a-z]+([A-Z][a-z]+)*$/.test(input) || "活动名称只能为驼峰英文命名"
     }
-}, 
+},
 {
     type: 'input',
     name: 'id',
@@ -46,6 +46,13 @@ inquirer.prompt([{
     type: 'input',
     name: 'isNeedPinia',
     message: '是否需要Pinia (Y/N)',
+    validate: function (input) {
+        return /^[yYnN]{1}$/.test(input) || "请输入y或n"
+    }
+}, {
+    type: 'input',
+    name: 'isNeedMock',
+    message: '是否需要Mock (Y/N)',
     validate: function (input) {
         return /^[yYnN]{1}$/.test(input) || "请输入y或n"
     }
@@ -128,6 +135,7 @@ inquirer.prompt([{
     if (answer.isNeedRank.toLocaleLowerCase() !== 'y') ignoreFiles.push('Components');
     if (answer.isNeedHalfMode.toLocaleLowerCase() !== 'y') ignoreFiles.push('hooks.ts');
     if (answer.isNeedLandingPage.toLocaleLowerCase() !== 'y') ignoreFiles.push('landingPage.vue');
+    if (answer.isNeedMock.toLocaleLowerCase() !== 'y') ignoreFiles.push('mock.ts');
     // 复制项目主体文件
     copyDir(templateActivityFileDir, targetPageDir, ignoreFiles);
     console.log('创建成功');
